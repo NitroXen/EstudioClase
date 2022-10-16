@@ -37,11 +37,14 @@ public class Escritura extends Archivo {
     
     public void añadir(){
         try {
-            escritura = new MyObjectOutputStream(new BufferedOutputStream(new FileOutputStream(archivo)));
+            escritura = new MyObjectOutputStream(new BufferedOutputStream(new FileOutputStream(archivo, true)));
         } catch (IOException ex) {
             Logger.getLogger(Escritura.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+    
     
     @Override
     public void cerrar() {

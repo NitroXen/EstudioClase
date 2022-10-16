@@ -110,9 +110,9 @@ public class Operaciones {
 
         ArrayList<String> tlfn = new ArrayList<>();
         try {
-            int numReg = rand.numRegistro() + 1;
+            int numReg = rand.numRegistro();
             Alumno a = new Alumno();
-            a.setNumero(numReg);
+            a.setNumero(numReg+ 1);
 
             System.out.println("Nombre Del Alumno: ");
             String nom = sc.next();
@@ -125,7 +125,7 @@ public class Operaciones {
             System.out.println("Cuantos telefonos Tienes: ");
             int num = sc.nextInt();
             for (int i = 0; i < num; i++) {
-                System.out.println("Escribe el numero de telefono(" + i + 1 + "): ");
+                System.out.println("Escribe el numero de telefono(" + (i+1) + "): ");
                 String s = sc.next();
                 while (s.length() != 9) {
                     System.out.println("El numero no tiene la longitud necesaria, Vuelva a intentarlo: ");
@@ -138,7 +138,7 @@ public class Operaciones {
             rand.escribirArchivo(a, numReg);
 
             escritura.añadir();
-            NotaAlumno na = añdirModulos(numReg);
+            NotaAlumno na = añdirModulos(numReg+1);
             escritura.escribirArchivo(na);
             escritura.cerrar();
 
@@ -173,9 +173,9 @@ public class Operaciones {
 
     public void borrarOAgregarTelefonos() {
         System.out.println("Elige un codigo alumno: ");
-        int numAlum = sc.nextInt();
+        int numAlum = sc.nextInt()-1;
 
-        Alumno a = rand.leerArchivo(numAlum - 1);
+        Alumno a = rand.leerArchivo(numAlum);
         rand.mostrarDatos(a);
         ArrayList<String> lista = a.getTelefono();
         System.out.println("Escribe un numero de telefono:");
@@ -200,13 +200,19 @@ public class Operaciones {
                 lista.add(nTlfn);
             }
         }
+        rand.escribirArchivo(a, numAlum);
 
+
+    }
+    
+    public void sobreescribirAlumno(Alumno a, int numReg){
+        
     }
 
     public void imprimirListado() {
 
         DateFormat date = DateFormat.getDateInstance();
-        DecimalFormat dec = new DecimalFormat("#.#");
+        DecimalFormat dec = new DecimalFormat("##.#");
         String lista = "";
         try {
             PrintStream print = new PrintStream("Alumnos.txt");

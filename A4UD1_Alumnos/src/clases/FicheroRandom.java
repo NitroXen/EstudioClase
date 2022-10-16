@@ -6,6 +6,7 @@ package clases;
 
 import CLASESDATOS.Alumno;
 import CLASESDATOS.Nombre;
+import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -66,7 +67,7 @@ public class FicheroRandom extends Archivo {
                     rand.writeUTF(tlfn);
                 }
                 rand.writeBoolean(a.isBorrado());
-                
+
             } else {
                 throw new PasadoException();
             }
@@ -77,6 +78,7 @@ public class FicheroRandom extends Archivo {
         }
 
     }
+    
 
     public Alumno leerArchivo(int nreg) {
         Alumno a = new Alumno();
@@ -110,10 +112,10 @@ public class FicheroRandom extends Archivo {
         System.out.println(muestra + "\n");
 
     }
-    
-    public String mostrarNombres(Alumno a){
-        String muestra ="";
-        muestra += a.getNumero() + "º "+ a.getNombre().getNombre() + " " + a.getNombre().getApellido1() + " " + a.getNombre().getApellido2();
+
+    public String mostrarNombres(Alumno a) {
+        String muestra = "";
+        muestra += a.getNumero() + "º " + a.getNombre().getNombre() + " " + a.getNombre().getApellido1() + " " + a.getNombre().getApellido2();
         return muestra;
     }
 
